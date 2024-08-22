@@ -146,8 +146,8 @@
 	</menu>
 	<menu>
 		<mcode>MN00025</mcode>
-		<hmenu>-</hmenu>
-		<emenu>-</emenu>
+		<hmenu>고객사</hmenu>
+		<emenu>Customer</emenu>
 		<desc>-</desc>
 	</menu>
 	<menu>
@@ -214,6 +214,42 @@
 		<mcode>MN00036</mcode>
 		<hmenu>패스워드 초기화</hmenu>
 		<emenu>reset password</emenu>
+		<desc>-</desc>
+	</menu>
+	<menu>
+		<mcode>MN00037</mcode>
+		<hmenu>품명</hmenu>
+		<emenu>Productnm</emenu>
+		<desc>-</desc>
+	</menu>
+	<menu>
+		<mcode>MN00038</mcode>
+		<hmenu>구분</hmenu>
+		<emenu>Division</emenu>
+		<desc>-</desc>
+	</menu>
+	<menu>
+		<mcode>MN00039</mcode>
+		<hmenu>사용자명</hmenu>
+		<emenu>Username</emenu>
+		<desc>-</desc>
+	</menu>
+	<menu>
+		<mcode>MN00040</mcode>
+		<hmenu>장비명</hmenu>
+		<emenu>Equipmentname</emenu>
+		<desc>-</desc>
+	</menu>
+	<menu>
+		<mcode>MN00041</mcode>
+		<hmenu>회사명</hmenu>
+		<emenu>Companyname</emenu>
+		<desc>-</desc>
+	</menu>
+	<menu>
+		<mcode>MN00042</mcode>
+		<hmenu>제품명</hmenu>
+		<emenu>Productname</emenu>
 		<desc>-</desc>
 	</menu>
 </root>

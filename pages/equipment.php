@@ -1,6 +1,7 @@
 <?
 session_start();
 require_once($_SERVER['DOCUMENT_ROOT'].'/lib/config.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/lib/lang.php');
 
 $product_list = $db->queryAll("
 	SELECT	C.CODE, C.CODE_NM
@@ -12,6 +13,9 @@ $product_list = $db->queryAll("
 ");
 ?>
 (function(){
+	function getequipmentList() {
+	return Ext.getCmp('equipment_list').getStore().reload();
+	}
 	var productPanel = {
 		xtype: 'panel',
 		layout: 'fit',
@@ -46,27 +50,45 @@ $product_list = $db->queryAll("
 						self.setValue(self.getStore().getAt(0).get('v'));
 					},
 					select: function(self, record, index){
-						Ext.getCmp('equipment_list').getStore().load();
+						getequipmentList();
 					}
 				}
 			}
-			,'-' , '사용자명 : ',
+			,'-' , '<?= _text('MN00039')?> : ',
 			{
 				width: 150,
 				xtype: 'textfield',
-				id: 'search_f_login_id'
+				id: 'search_f_login_id',
+				enableKeyEvents: true,
+				listeners: {
+					// 사용자명 엔터 검색기능 추가 // jsseol 2024-08-22
+					keypress: function(self, e){
+						if(e.keyCode == 13){
+							getequipmentList();
+						}
+					}
+				}
 			}
-			,'-' , '장비명',
+			,'-' , '<?= _text('MN00040')?>',
 			{
 				width: 150,
 				xtype: 'textfield',
-				id: 'search_f_equ_nm'
+				id: 'search_f_equ_nm',
+				enableKeyEvents: true,
+				listeners: {
+					// 장비명 엔터 검색기능 추가 // jsseol 2024-08-22
+					keypress: function(self, e){
+						if(e.keyCode == 13){
+							getequipmentList();
+						}
+					}
+				}
 			},{
 				text: '검색',
 				icon: '/led-icons/magnifier.png',
 				listeners: {
 					click: function(self){
-						Ext.getCmp('equipment_list').getStore().load();
+						getequipmentList();
 					}
 				}
 			},'-',{

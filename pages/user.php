@@ -5,6 +5,9 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/lang.php');
 
 ?>
 (function(){
+	function getuserList() {
+	return Ext.getCmp('user_list').getStore().reload();
+	}
 	var productPanel = {
 		xtype: 'panel',
 		layout: 'fit',
@@ -12,21 +15,29 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/lang.php');
 			xtype: 'grid',
 			id: 'user_list',
 			tbar: [
-			/*
-			'사용자 : ',{
+			'<?= _text('MN00039')?> : ',{
 				width: 200,
 				xtype: 'textfield',
-				id: 'search_key'
+				id: 'search_key',
+				enableKeyEvents: true,
+				listeners: {
+					// 사용자명 엔터 검색기능 추가 // jsseol 2024-08-22
+					keypress: function(self, e){			
+						if(e.keyCode == 13){		
+							getuserList();				
+						}
+					}
+				}
 			},{
 				text: '검색',
 				icon: '/led-icons/magnifier.png',
 				listeners: {
 					click: function(self){
-						Ext.getCmp('user_list').getStore().load();
+						getuserList();	
 					}
 				}
 			},'-',
-			*/
+			
 			{
 				//text: _text('MN00030'),
 				text: '<?= _text('MN00030')?>',
@@ -66,7 +77,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/lang.php');
 				//text: _text('MN00029'),
 				text: '<?= _text('MN00029')?>',
 				handler: function(btn){
-					Ext.getCmp('user_list').getStore().reload();
+					getuserList();	
 				}
 			},'-',{
 				icon: '/led-icons/arrow_refresh.png',
@@ -148,11 +159,10 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/lang.php');
 						}
 					},
 					beforeload: function(self, opts){
-						//var searchkey = Ext.getCmp('search_key').getValue();
-
+						var searchV = Ext.get('search_key').getValue();
 						self.baseParams = {
-							action: 'getUserList'
-							//,searchkey: searchkey
+							action: 'getUserList',
+							searchkey: searchV
 						}
 					},
 					load: function(self, records, opts){

@@ -1,15 +1,20 @@
 <?
 session_start();
 require_once($_SERVER['DOCUMENT_ROOT'].'/lib/config.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/lib/lang.php');
+
 ?>
 (function(){
+	function getproductList() {
+	return Ext.getCmp('product_list').getStore().reload();;
+	}
 	var productPanel = {
 		xtype: 'panel',
 		layout: 'fit',
 		items: [{
 			xtype: 'grid',
 			id: 'product_list',
-			tbar: ['구분 : ',{
+			tbar: ['<?= _text('MN00038')?>  : ',{
 				width: 150,
 				xtype: 'combo',
 				id: 'search_f_product_type',
@@ -43,22 +48,44 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/config.php');
 				listeners: {
 					render: function(self){
 						self.setValue(self.getStore().getAt(0).get('v'));
+					},
+					select: function(self, record, index){
+						// 구분탭 조회 검색 기능 추가 // jsseol 2024-08-21
+						getproductList();
 					}
 				}
-			},'회사명 : ',{
+			},'<?= _text('MN00041')?> : ',{
 				width: 200,
 				xtype: 'textfield',
-				id: 'search_f_company_nm'
-			},'제품명 : ',{
+				id: 'search_f_company_nm',
+				enableKeyEvents: true,
+				listeners: {
+					// 회사명 엔터 검색기능 추가 // jsseol 2024-08-21
+					keypress: function(self, e){
+						if(e.keyCode == 13){
+							getproductList();
+						}
+					}
+				}
+			},'<?= _text('MN00042')?>: ',{
 				width: 200,
 				xtype: 'textfield',
-				id: 'search_f_product_nm'
+				id: 'search_f_product_nm',
+				enableKeyEvents: true,
+				listeners: {
+					// 제품명 엔터 검색기능 추가 // jsseol 2024-08-21
+						keypress: function(self, e){
+							if(e.keyCode == 13){
+								getproductList();
+							}
+						}
+					}
 			},{
 				text: '검색',
 				icon: '/led-icons/magnifier.png',
 				listeners: {
 					click: function(self){
-						Ext.getCmp('product_list').getStore().load();
+						getproductList();
 					}
 				}
 			},'-',{

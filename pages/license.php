@@ -12,6 +12,9 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/lang.php');
 	$user_level = $db->queryOne($q);
 ?>
 (function(){
+	function getlicenseList() {
+	return Ext.getCmp('proj_list').getStore().reload();;
+	}
 	var copyText = '';
 	var clipBoard_client1 = '';
 	var clipBoard_client2 = '';
@@ -84,17 +87,35 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/lang.php');
 						menu.showAt(e.getXY());
 					}
 				},
-				tbar: ['고객사 : ',{
+				tbar: ['<?= _text('MN00025')?>  : ',{
 					xtype: 'textfield',
 					fieldLabel: '고객사',
 					id: 'cust_nm',
-					width: 120
-				},'-','프로젝트 : ',{
+					width: 120,
+					enableKeyEvents: true,
+				    listeners: {
+						keypress: function(self, e){
+							// 고객사 엔터 검색기능 추가 // jsseol 2024-08-22
+							if(e.keyCode == 13){
+								getlicenseList();
+							}
+						}
+					}
+				},'-','<?= _text('MN00026')?> : ',{
 					xtype: 'textfield',
 					fieldLabel: '프로젝트',
 					id: 'proj_nm',
-					width: 120
-				},'-','품명 : ',{
+					width: 120,
+					enableKeyEvents: true,
+				    listeners: {
+						keypress: function(self, e){
+							// 프로젝트 엔터 검색기능 추가 // jsseol 2024-08-22
+							if(e.keyCode == 13){
+								getlicenseList();
+							}
+						}
+					}
+				},'-','<?= _text('MN00037')?> : ',{
 					width: 120,
 					xtype: 'combo',
 					fieldLabel: '품명',
@@ -127,6 +148,10 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/lang.php');
 					listeners: {
 						render: function(self){
 							self.setValue(self.getStore().getAt(0).get('v'));
+						},
+						select: function(self, record, index){
+							//품명 선택시 정보 출력 // jsseol 2024-08-22
+							getlicenseList();
 						}
 					}
 				},{

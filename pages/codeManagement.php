@@ -3,6 +3,9 @@ session_start();
 require_once($_SERVER['DOCUMENT_ROOT'].'/lib/config.php');
 ?>
 (function(){
+	function getcodetypeList() {
+	return Ext.getCmp('codeTypeList').getStore().reload();
+	}
 	var getCodeManagementPanel = {
 		xtype: 'panel',
 		layout: 'border',
@@ -44,7 +47,16 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/config.php');
 			},{
 				xtype: 'textfield',
 				width: 250,
-				id: 'search_v_c'
+				id: 'search_v_c',
+				enableKeyEvents: true,
+				listeners: {
+					// 엔터 검색기능 추가 // jsseol 2024-08-22
+					keypress: function(self, e){
+						if(e.keyCode == 13){
+							getcodetypeList();
+						}
+					}
+				}
 			},{
 				text: '검색',
 				icon: '/led-icons/magnifier.png',
