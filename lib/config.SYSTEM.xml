@@ -12,7 +12,7 @@
 		<WEB_PATH_LOCAL_VALUE>Z:/Storage/lowres</WEB_PATH_LOCAL_VALUE>
 		
 		<!--스트리밍용 서버 아이피-->
-		<STREAM_SERVER_IP>127.0.0.1</STREAM_SERVER_IP>
+		<STREAM_SERVER_IP>192.168.1.24</STREAM_SERVER_IP>
 		<!--스트리밍용 미디어 타입-->
 		<STREAM_FILE>proxy</STREAM_FILE>
 		<!--스트리밍용 가상 경로-->
@@ -30,14 +30,14 @@
 		<DB_NAME>proxima</DB_NAME>
 		<DB_SID>proxima</DB_SID>
 		<DB_SERVICE_ORACLE>(DESCRIPTION =(FAILOVER = on)(ADDRESS_LIST =(ADDRESS = (PROTOCOL = TCP)(HOST = 1.215.23.20)(PORT = 8016)))(SERVER=POOLED)(CONNECT_DATA =(SERVICE_NAME = proxima)(FAILOVER_MODE =(TYPE = session)(METHOD = basic))))</DB_SERVICE_ORACLE>
-		<DB_SERVICE>host=127.0.0.1 port=5432 dbname=postgres user=gemiso_pgm password=gemiso_pgm options='--client_encoding=UTF8'</DB_SERVICE>
+		<DB_SERVICE>host=192.168.1.24 port=5432 dbname=postgres user=gemiso_pgm password=gemiso_pgm options='--client_encoding=UTF8'</DB_SERVICE>
 
 		<!--커스터마이징 이름(만약 ebs_encoder면 src/custom/ebs_encoder로 폴더를 만들고 
 			composer.json에 ProximaCusom의 값을 "custom/ebs_encoder"로 설정해야 한다.)
 			composer.json을 고친 후에는 반드시 composer dumpautoload 명령을 수행해서 autoloading파일을 갱신해 줘야 한다.
 		-->
 		<CUSTOM_NAME>example</CUSTOM_NAME>
-		<UPLOAD_URL>http://localhost:8080/upload</UPLOAD_URL>
+		<UPLOAD_URL>http://192.168.1.24:8080/upload</UPLOAD_URL>
 		<!--전체 카테고리 사용 여부
 		전체 카테고리 사용 하게 되면 첫 로딩 시 1Depth 루트 카테고리까지 로드가 되고 
 		탭을 클릭해도 카테고리를 새로 로드 하지 않고 루트 카테고리만 선택이 바뀐다.
