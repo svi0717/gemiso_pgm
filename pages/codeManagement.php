@@ -3,9 +3,6 @@ session_start();
 require_once($_SERVER['DOCUMENT_ROOT'].'/lib/config.php');
 ?>
 (function(){
-	function getcodetypeList() {
-	return Ext.getCmp('codeTypeList').getStore().reload();
-	}
 	var getCodeManagementPanel = {
 		xtype: 'panel',
 		layout: 'border',

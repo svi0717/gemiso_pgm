@@ -5,9 +5,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/lang.php');
 
 ?>
 (function(){
-	function getproductList() {
-	return Ext.getCmp('product_list').getStore().reload();;
-	}
+
 	var productPanel = {
 		xtype: 'panel',
 		layout: 'fit',

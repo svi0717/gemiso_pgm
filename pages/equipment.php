@@ -13,9 +13,6 @@ $product_list = $db->queryAll("
 ");
 ?>
 (function(){
-	function getequipmentList() {
-	return Ext.getCmp('equipment_list').getStore().reload();
-	}
 	var productPanel = {
 		xtype: 'panel',
 		layout: 'fit',

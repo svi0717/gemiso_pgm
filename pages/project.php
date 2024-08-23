@@ -12,9 +12,6 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/lang.php');
 	$user_level = $db->queryOne($q);
 ?>
 (function(){
-	function getprojectList() {
-	return Ext.getCmp('proj_list').getStore().reload();;
-	}
 	var copyText = '';
 	var clipBoard_client1 = '';
 	var clipBoard_client2 = '';
