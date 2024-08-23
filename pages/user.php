@@ -2,7 +2,6 @@
 session_start();
 require_once($_SERVER['DOCUMENT_ROOT'].'/lib/config.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/lib/lang.php');
-
 ?>
 (function(){
 	var productPanel = {
@@ -19,10 +18,8 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/lang.php');
 				enableKeyEvents: true,
 				listeners: {
 					// 사용자명 엔터 검색기능 추가 // jsseol 2024-08-22
-					keypress: function(self, e){			
-						if(e.keyCode == 13){		
-							getuserList();				
-						}
+					keypress: function(self, e){
+						storeReload(self,e);
 					}
 				}
 			},{
@@ -30,7 +27,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/lang.php');
 				icon: '/led-icons/magnifier.png',
 				listeners: {
 					click: function(self){
-						getuserList();	
+						storeReload(self);
 					}
 				}
 			},'-',
@@ -74,7 +71,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/lang.php');
 				//text: _text('MN00029'),
 				text: '<?= _text('MN00029')?>',
 				handler: function(btn){
-					getuserList();	
+					storeReload(btn);
 				}
 			},'-',{
 				icon: '/led-icons/arrow_refresh.png',

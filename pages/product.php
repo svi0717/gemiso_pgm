@@ -60,9 +60,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/lang.php');
 				listeners: {
 					// 회사명 엔터 검색기능 추가 // jsseol 2024-08-21
 					keypress: function(self, e){
-						if(e.keyCode == 13){
-							getproductList();
-						}
+						storeReload(self,e);
 					}
 				}
 			},'<?= _text('MN00042')?>: ',{
@@ -73,9 +71,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/lang.php');
 				listeners: {
 					// 제품명 엔터 검색기능 추가 // jsseol 2024-08-21
 						keypress: function(self, e){
-							if(e.keyCode == 13){
-								getproductList();
-							}
+							storeReload(self,e);		
 						}
 					}
 			},{
@@ -83,7 +79,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/lang.php');
 				icon: '/led-icons/magnifier.png',
 				listeners: {
 					click: function(self){
-						getproductList();
+						storeReload(self);
 					}
 				}
 			},'-',{

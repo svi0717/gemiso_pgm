@@ -47,7 +47,7 @@ $product_list = $db->queryAll("
 						self.setValue(self.getStore().getAt(0).get('v'));
 					},
 					select: function(self, record, index){
-						getequipmentList();
+						storeReload(self);
 					}
 				}
 			}
@@ -60,9 +60,7 @@ $product_list = $db->queryAll("
 				listeners: {
 					// 사용자명 엔터 검색기능 추가 // jsseol 2024-08-22
 					keypress: function(self, e){
-						if(e.keyCode == 13){
-							getequipmentList();
-						}
+						storeReload(self,e);
 					}
 				}
 			}
@@ -75,9 +73,7 @@ $product_list = $db->queryAll("
 				listeners: {
 					// 장비명 엔터 검색기능 추가 // jsseol 2024-08-22
 					keypress: function(self, e){
-						if(e.keyCode == 13){
-							getequipmentList();
-						}
+							storeReload(self,e);
 					}
 				}
 			},{
@@ -85,7 +81,7 @@ $product_list = $db->queryAll("
 				icon: '/led-icons/magnifier.png',
 				listeners: {
 					click: function(self){
-						getequipmentList();
+						storeReload(self);
 					}
 				}
 			},'-',{

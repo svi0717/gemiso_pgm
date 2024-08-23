@@ -49,9 +49,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/config.php');
 				listeners: {
 					// 엔터 검색기능 추가 // jsseol 2024-08-22
 					keypress: function(self, e){
-						if(e.keyCode == 13){
-							getcodetypeList();
-						}
+						storeReload(self,e);
 					}
 				}
 			},{

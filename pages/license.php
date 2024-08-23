@@ -93,9 +93,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/lang.php');
 				    listeners: {
 						keypress: function(self, e){
 							// 고객사 엔터 검색기능 추가 // jsseol 2024-08-22
-							if(e.keyCode == 13){
-								getlicenseList();
-							}
+							storeReload(self,e);
 						}
 					}
 				},'-','<?= _text('MN00026')?> : ',{
@@ -107,9 +105,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/lang.php');
 				    listeners: {
 						keypress: function(self, e){
 							// 프로젝트 엔터 검색기능 추가 // jsseol 2024-08-22
-							if(e.keyCode == 13){
-								getlicenseList();
-							}
+							storeReload(self,e);
 						}
 					}
 				},'-','<?= _text('MN00037')?> : ',{
@@ -148,7 +144,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/lib/lang.php');
 						},
 						select: function(self, record, index){
 							//품명 선택시 정보 출력 // jsseol 2024-08-22
-							getlicenseList();
+							storeReload(self);
 						}
 					}
 				},{
